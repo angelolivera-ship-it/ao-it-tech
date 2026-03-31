@@ -30,20 +30,18 @@ export default function NavBar() {
         setMobileOpen(false);
     }, [location]);
 
-    // On the home page before scrolling, the nav sits over the hero image
-    // so text needs to be white/light regardless of theme.
-    // Once scrolled, or on other pages, follow the theme.
-    const isOverHero = location.pathname === '/' && !scrolled;
     const isDark = theme === 'dark';
-    const useLight = isOverHero || isDark;
+    const useLight = isDark;
 
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,padding,box-shadow] duration-500 ${scrolled
                     ? (isDark
                         ? 'bg-[#0A1128]/80 backdrop-blur-2xl shadow-[0_1px_0_rgba(255,255,255,0.04)] py-3'
-                        : 'bg-white/80 backdrop-blur-2xl shadow-[0_1px_0_rgba(10,17,40,0.06)] py-3')
-                    : 'bg-transparent py-6'
+                        : 'bg-white/95 backdrop-blur-2xl shadow-[0_1px_0_rgba(10,17,40,0.06)] py-3')
+                    : (isDark
+                        ? 'bg-transparent py-6'
+                        : 'bg-white py-6 shadow-[0_1px_0_rgba(10,17,40,0.06)]')
                 }`}
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
