@@ -13,7 +13,9 @@
       "Bash(where gh.exe)",
       "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth status 2>&1)",
       "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo create angelolivera-ship-it/ao-it-tech --private --description \"AO IT Tech — IT Infrastructure You Can Rely On\" 2>&1)",
-      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo view angelolivera-ship-it/ao-it-tech)"
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo view angelolivera-ship-it/ao-it-tech)",
+      "Bash(npm install:*)",
+      "Bash(npm ls:*)"
     ]
   }
 }
