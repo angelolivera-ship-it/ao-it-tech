@@ -19,7 +19,7 @@ export default function PageNotFound() {
                         </p>
                     </div>
                     <div className="pt-6">
-                        <a href="/" className="inline-flex items-center px-5 py-2.5 text-sm font-heading font-semibold text-[#0A1128] bg-[var(--brand)] rounded-lg hover:opacity-90 transition-all duration-200">
+                        <a href="/" className="inline-flex items-center px-5 py-2.5 text-sm font-heading font-semibold text-white bg-[var(--brand)] rounded-lg hover:opacity-90 transition-all duration-200">
                             Go Home
                         </a>
                     </div>

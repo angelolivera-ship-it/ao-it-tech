@@ -83,7 +83,7 @@ export default function Hero() {
                             className="flex flex-col sm:flex-row gap-4"
                         >
                             <Link to="/contact">
-                                <Button className="bg-[var(--brand)] text-[#0A1128] hover:opacity-90 font-heading font-semibold text-base px-8 py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500">
+                                <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold text-base px-8 py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500">
                                     Secure Your Infrastructure
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>

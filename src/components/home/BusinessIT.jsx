@@ -41,7 +41,7 @@ export default function BusinessIT() {
                             ))}
                         </div>
                         <Link to="/contact">
-                            <Button className="bg-[var(--brand)] text-[#0A1128] hover:opacity-90 font-heading font-semibold hover:shadow-[0_0_24px_var(--glow)] transition-all duration-500">
+                            <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold hover:shadow-[0_0_24px_var(--glow)] transition-all duration-500">
                                 Discuss Your IT Needs <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
                         </Link>

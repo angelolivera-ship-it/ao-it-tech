@@ -21,7 +21,7 @@ export default function ContactCTA() {
                         <p className="text-body text-lg mb-12 font-body">Whether you need a full network overhaul or just help setting up your home WiFi — a free consultation is just a message away.</p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
                             <Link to="/contact">
-                                <Button className="bg-[var(--brand)] text-[#0A1128] hover:opacity-90 font-heading font-semibold text-base px-8 py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500">
+                                <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold text-base px-8 py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500">
                                     Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             </Link>

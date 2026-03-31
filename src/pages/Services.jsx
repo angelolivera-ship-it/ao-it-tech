@@ -116,7 +116,7 @@ export default function Services() {
                     </h2>
                     <p className="text-body text-lg mb-12 font-body">Most clients start with a conversation. Describe what's going on and you'll get an honest recommendation. No pressure, no obligation.</p>
                     <Link to="/contact">
-                        <Button className="bg-[var(--brand)] text-[#0A1128] hover:opacity-90 font-heading font-semibold text-base px-8 py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500">
+                        <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold text-base px-8 py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500">
                             Start a Conversation <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                     </Link>

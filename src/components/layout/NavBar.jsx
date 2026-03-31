@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Shield } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { useTheme } from 'next-themes';
@@ -46,18 +46,13 @@ export default function NavBar() {
                 }`}
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-3 group">
-                    <div className="relative w-9 h-9 rounded-lg bg-[var(--brand)] flex items-center justify-center transition-shadow duration-300 group-hover:shadow-[0_0_24px_var(--glow)]">
-                        <Shield className="w-5 h-5 text-[#0A1128]" aria-hidden="true" />
-                    </div>
-                    <div className="flex flex-col leading-none">
-                        <span className={`font-heading font-bold text-lg tracking-tight transition-colors duration-300 ${useLight ? 'text-white' : 'text-[#0A1128]'}`}>
-                            AO IT Tech
-                        </span>
-                        <span className={`text-[10px] font-mono uppercase tracking-[0.2em] mt-0.5 transition-colors duration-300 ${useLight ? 'text-white/30' : 'text-[#0A1128]/30'}`}>
-                            Est. 2009
-                        </span>
-                    </div>
+                <Link to="/" className="flex items-center group relative">
+                    <img
+                        src="/images/logo.png"
+                        alt="AO IT Tech"
+                        className={`h-20 w-auto absolute -top-6 left-0 transition-all duration-300 ${useLight ? 'brightness-0 invert' : ''}`}
+                    />
+                    <div className="w-24 h-8" />
                 </Link>
 
                 <div className="hidden md:flex items-center gap-1">
@@ -85,7 +80,7 @@ export default function NavBar() {
                     <ThemeToggle light={useLight} />
                     <div className={`w-px h-5 mx-2 transition-colors duration-300 ${useLight ? 'bg-white/15' : 'bg-[#0A1128]/10'}`} />
                     <Link to="/contact">
-                        <Button className="bg-[var(--brand)] text-[#0A1128] hover:opacity-90 font-heading font-semibold text-sm px-5 hover:shadow-[0_0_24px_var(--glow)] transition-all duration-300">
+                        <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold text-sm px-5 hover:shadow-[0_0_24px_var(--glow)] transition-all duration-300">
                             Get Support
                         </Button>
                     </Link>
@@ -135,7 +130,7 @@ export default function NavBar() {
                             ))}
                             <div className="rule-accent my-4" />
                             <Link to="/contact">
-                                <Button className="w-full bg-[var(--brand)] text-[#0A1128] hover:opacity-90 font-heading font-semibold">
+                                <Button className="w-full bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold">
                                     Get Support
                                 </Button>
                             </Link>

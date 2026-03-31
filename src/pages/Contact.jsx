@@ -81,7 +81,7 @@ export default function Contact() {
                                             {topics.map(topic => (
                                                 <button key={topic} type="button" onClick={() => handleTopicToggle(topic)}
                                                     className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[var(--brand)]/50 focus-visible:outline-none ${form.topic === topic
-                                                        ? 'bg-[var(--brand)] text-[#0A1128] shadow-[0_0_16px_var(--glow-subtle)]'
+                                                        ? 'bg-[var(--brand)] text-white shadow-[0_0_16px_var(--glow-subtle)]'
                                                         : 'bg-[var(--surface-alt)] text-body border border-subtle hover:border-hover-theme hover:text-heading'}`}
                                                     aria-pressed={form.topic === topic}>{topic}</button>
                                             ))}
@@ -91,7 +91,7 @@ export default function Contact() {
                                         <Label htmlFor="contact-message" className="text-body text-sm font-body">Message *</Label>
                                         <Textarea id="contact-message" name="message" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Describe what's going on with your technology..." rows={5} className="bg-[var(--surface-alt)] border-subtle text-heading placeholder:text-muted-theme focus:border-[var(--brand)]/50 focus-visible:ring-[var(--brand)]/20 resize-none transition-colors duration-300" />
                                     </div>
-                                    <Button type="submit" disabled={loading} className="w-full bg-[var(--brand)] text-[#0A1128] hover:opacity-90 font-heading font-semibold text-base py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500 disabled:opacity-60">
+                                    <Button type="submit" disabled={loading} className="w-full bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold text-base py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500 disabled:opacity-60">
                                         {loading ? 'Sending...' : 'Send Message'} <Send className="w-4 h-4 ml-2" aria-hidden="true" />
                                     </Button>
                                 </form>
