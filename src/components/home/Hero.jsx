@@ -127,7 +127,7 @@ export default function Hero() {
                         ].map((stat) => (
                             <div key={stat.label} className="border-l border-subtle pl-5">
                                 <div className="font-heading font-bold text-2xl text-heading">
-                                    <AnimatedCounter value={stat.num} suffix={stat.suffix} />
+                                    <AnimatedCounter value={stat.num} suffix={stat.suffix} delay={800} />
                                 </div>
                                 <div className="text-muted-theme text-sm font-body mt-0.5">{stat.label}</div>
                             </div>

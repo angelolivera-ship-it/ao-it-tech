@@ -55,7 +55,7 @@ export default function TrustIntro() {
                                             <stat.icon className="w-4.5 h-4.5 text-brand" aria-hidden="true" />
                                         </div>
                                         <div className="font-heading font-bold text-3xl text-heading tracking-tight">
-                                            <AnimatedCounter value={stat.value} suffix={stat.value === '15+' ? '+' : ''} />
+                                            <AnimatedCounter value={stat.value} />
                                         </div>
                                     </div>
                                     <div className="font-heading font-semibold text-heading text-sm uppercase tracking-wider">{stat.label}</div>
