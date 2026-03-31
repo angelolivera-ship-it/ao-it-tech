@@ -7,6 +7,7 @@ import Home from '@/pages/Home';
 import About from '@/pages/About';
 import Services from '@/pages/Services';
 import Contact from '@/pages/Contact';
+import FAQ from '@/pages/FAQ';
 import PageNotFound from '@/pages/PageNotFound';
 
 export function render(url) {
@@ -18,6 +19,7 @@ export function render(url) {
                     <Route path="/about" element={<About />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/faq" element={<FAQ />} />
                 </Route>
                 <Route path="*" element={<PageNotFound />} />
             </Routes>

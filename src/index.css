@@ -49,9 +49,9 @@
         --text-muted: rgba(10, 17, 40, 0.35);
         --border-subtle: rgba(10, 17, 40, 0.06);
         --border-hover: rgba(10, 17, 40, 0.12);
-        --card-bg: #ffffff;
-        --card-shadow: 0 4px 20px rgba(10, 17, 40, 0.03);
-        --card-shadow-hover: 0 8px 30px rgba(0, 132, 168, 0.06);
+        --card-bg: rgba(255, 255, 255, 0.7);
+        --card-shadow: 0 4px 20px rgba(10, 17, 40, 0.04), 0 1px 3px rgba(10, 17, 40, 0.02);
+        --card-shadow-hover: 0 12px 40px rgba(0, 132, 168, 0.08), 0 4px 12px rgba(10, 17, 40, 0.04);
         --glow: rgba(0, 210, 255, 0.3);
         --glow-subtle: rgba(0, 132, 168, 0.06);
         --icon-bg: rgba(0, 210, 255, 0.08);
@@ -92,9 +92,9 @@
         --text-muted: rgba(255, 255, 255, 0.3);
         --border-subtle: rgba(255, 255, 255, 0.06);
         --border-hover: rgba(255, 255, 255, 0.12);
-        --card-bg: rgba(255, 255, 255, 0.02);
-        --card-shadow: none;
-        --card-shadow-hover: none;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        --card-shadow-hover: 0 12px 40px rgba(0, 210, 255, 0.08), 0 0 1px rgba(255, 255, 255, 0.1) inset;
         --glow: rgba(0, 210, 255, 0.35);
         --glow-subtle: rgba(0, 210, 255, 0.06);
         --icon-bg: rgba(0, 210, 255, 0.07);
@@ -143,13 +143,26 @@
     /* Theme-aware utility classes */
     .bg-surface { background: var(--surface); }
     .bg-surface-alt { background: var(--surface-alt); }
-    .bg-card-theme { background: var(--card-bg); }
+    .bg-card-theme { background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     .text-heading { color: var(--text-primary); }
     .text-body { color: var(--text-secondary); }
     .text-muted-theme { color: var(--text-muted); }
     .text-brand { color: var(--brand-text); }
     .border-subtle { border-color: var(--border-subtle); }
     .border-hover-theme { border-color: var(--border-hover); }
+}
+
+/* Focus indicator for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
 }
 
 /* Grain texture overlay */

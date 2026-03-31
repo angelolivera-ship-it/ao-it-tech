@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Clock, Wrench, Users } from 'lucide-react';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
 
 const stats = [
     { icon: Clock, value: '15+', label: 'Years', desc: 'Hands-on field experience' },
@@ -44,14 +45,18 @@ export default function TrustIntro() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: i * 0.1 }}
-                                    className={`group relative bg-card-theme border border-subtle rounded-2xl p-7 hover:border-[var(--brand)]/30 transition-all duration-500 ${i % 2 === 1 ? 'sm:mt-8' : ''}`}
+                                    className={`group relative bg-card-theme border border-subtle rounded-2xl p-7 hover:border-[var(--brand)]/30 transition-all duration-500 hover:-translate-y-1 ${i % 2 === 1 ? 'sm:mt-8' : ''}`}
                                     style={{ boxShadow: 'var(--card-shadow)' }}
+                                    onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--card-shadow-hover)'}
+                                    onMouseLeave={e => e.currentTarget.style.boxShadow = 'var(--card-shadow)'}
                                 >
                                     <div className="flex items-center gap-3 mb-5">
                                         <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-500" style={{ background: 'var(--icon-bg)' }}>
                                             <stat.icon className="w-4.5 h-4.5 text-brand" aria-hidden="true" />
                                         </div>
-                                        <div className="font-heading font-bold text-3xl text-heading tracking-tight">{stat.value}</div>
+                                        <div className="font-heading font-bold text-3xl text-heading tracking-tight">
+                                            <AnimatedCounter value={stat.value} suffix={stat.value === '15+' ? '+' : ''} />
+                                        </div>
                                     </div>
                                     <div className="font-heading font-semibold text-heading text-sm uppercase tracking-wider">{stat.label}</div>
                                     <div className="text-muted-theme text-sm mt-1.5 font-body">{stat.desc}</div>

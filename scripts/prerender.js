@@ -52,6 +52,11 @@ const routes = [
         path: '/contact',
         title: 'Contact AO IT Tech — Free IT Consultation',
         description: 'Get in touch with AO IT Tech for a free consultation. Network support, security audits, home tech help, and AI solutions.',
+    },
+    {
+        path: '/faq',
+        title: 'FAQ — Common IT Questions Answered | AO IT Tech',
+        description: 'Answers to common IT questions: slow internet fixes, virus removal, IT support costs, cloud migration, email security, and more. Serving Winter Haven & Central Florida.',
     }
 ];
 
@@ -95,35 +100,68 @@ async function prerender() {
                 `    <link rel="canonical" href="${canonical}" />\n</head>`
             );
 
-            // Add Open Graph tags
-            const ogTags = `
+            // Add Open Graph + Twitter Card tags
+            const socialTags = `
     <meta property="og:title" content="${route.title}" />
     <meta property="og:description" content="${route.description}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonical}" />
-    <meta property="og:site_name" content="AO IT Tech" />`;
+    <meta property="og:site_name" content="AO IT Tech" />
+    <meta property="og:image" content="https://aoittech.com/images/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${route.title}" />
+    <meta name="twitter:description" content="${route.description}" />
+    <meta name="twitter:image" content="https://aoittech.com/images/og-image.png" />`;
 
-            html = html.replace('</head>', `${ogTags}\n</head>`);
+            html = html.replace('</head>', `${socialTags}\n</head>`);
 
             // Add structured data (JSON-LD)
-            const jsonLd = route.path === '/'
-                ? `<script type="application/ld+json">${JSON.stringify({
+            const jsonLdItems = [];
+
+            if (route.path === '/') {
+                jsonLdItems.push({
                     "@context": "https://schema.org",
-                    "@type": "LocalBusiness",
+                    "@type": "ProfessionalService",
                     "name": "AO IT Tech",
                     "description": route.description,
                     "url": "https://aoittech.com",
+                    "logo": "https://aoittech.com/images/logo.png",
+                    "image": "https://aoittech.com/images/og-image.png",
                     "founder": { "@type": "Person", "name": "Angel Olivera" },
                     "foundingDate": "2009",
-                    "areaServed": "Local & Remote",
-                    "serviceType": ["IT Support", "Network Infrastructure", "Security", "AI Solutions"],
+                    "areaServed": [
+                        { "@type": "City", "name": "Winter Haven", "containedInPlace": { "@type": "State", "name": "Florida" } },
+                        { "@type": "City", "name": "Lakeland", "containedInPlace": { "@type": "State", "name": "Florida" } },
+                        { "@type": "City", "name": "Haines City", "containedInPlace": { "@type": "State", "name": "Florida" } },
+                        { "@type": "AdministrativeArea", "name": "Central Florida" }
+                    ],
+                    "serviceType": ["IT Support", "Managed IT Services", "Network Infrastructure", "Cybersecurity", "Cloud Migration", "AI Solutions", "Computer Repair"],
                     "telephone": "(555) 123-4567",
-                    "email": "contact@aoittech.com"
-                })}</script>`
-                : '';
+                    "email": "contact@aoittech.com",
+                    "priceRange": "$$",
+                    "knowsAbout": ["IT Infrastructure", "Network Security", "Microsoft 365", "AI Automation", "Server Management"]
+                });
+            }
 
-            if (jsonLd) {
-                html = html.replace('</head>', `    ${jsonLd}\n</head>`);
+            if (route.path === '/faq') {
+                jsonLdItems.push({
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        { "@type": "Question", "name": "How much does IT support cost for a small business?", "acceptedAnswer": { "@type": "Answer", "text": "Most IT support runs between $75–200 per hour. AO IT Tech offers flexible options from full managed IT to on-call support." } },
+                        { "@type": "Question", "name": "What's the difference between managed IT and break-fix?", "acceptedAnswer": { "@type": "Answer", "text": "Break-fix charges per incident when something goes wrong. Managed IT is proactive — we monitor your systems, apply updates, manage security, and prevent problems before they happen." } },
+                        { "@type": "Question", "name": "Do you support remote and hybrid teams?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We set up secure VPN access, remote desktop solutions, cloud-based collaboration tools, and endpoint protection for remote devices." } },
+                        { "@type": "Question", "name": "What if something breaks at 2 AM?", "acceptedAnswer": { "@type": "Answer", "text": "We offer emergency support for critical issues. Managed IT clients get priority emergency response for server outages and security incidents." } },
+                        { "@type": "Question", "name": "Why should I hire a local IT person instead of a big company?", "acceptedAnswer": { "@type": "Answer", "text": "With AO IT Tech, you get Angel — someone who knows your systems, understands your business, and picks up the phone. No call center, no rotating technicians, just direct support." } }
+                    ]
+                });
+            }
+
+            for (const item of jsonLdItems) {
+                html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(item)}</script>\n</head>`);
             }
 
             // Write to appropriate path

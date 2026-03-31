@@ -32,7 +32,7 @@ export default function ServicesOverview() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {services.map((svc, i) => (
                         <motion.div key={svc.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }}
-                            className={`group relative rounded-2xl p-7 transition-all duration-500 ${svc.span} ${svc.featured
+                            className={`group relative rounded-2xl p-7 transition-all duration-500 hover:-translate-y-1 ${svc.span} ${svc.featured
                                 ? 'border border-[var(--brand)]/15 hover:border-[var(--brand)]/30 bg-[var(--icon-bg)]'
                                 : 'bg-card-theme border border-subtle hover:border-hover-theme'}`}
                             style={{ boxShadow: 'var(--card-shadow)' }}

@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
 
 export default function Hero() {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start start', 'end start'],
+    });
+    const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+
     return (
-        <section className="relative min-h-screen flex items-end overflow-hidden bg-surface">
-            {/* Background image */}
-            <div className="absolute inset-0">
+        <section ref={sectionRef} className="relative min-h-screen flex items-end overflow-hidden bg-surface">
+            {/* Background image with parallax */}
+            <motion.div className="absolute inset-0" style={{ y: bgY }}>
                 <img
                     src="/images/hero-server.png"
                     alt="Server rack with blue LED lights in a modern data center"
-                    className="w-full h-full object-cover"
+                    className="w-full h-[120%] object-cover"
                     width={1920}
                     height={1080}
                     fetchpriority="high"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[var(--surface)] via-[var(--surface)]/85 to-[var(--surface)]/40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-[var(--surface)]/30 to-transparent" />
-            </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--surface)] via-[var(--surface)]/90 to-[var(--surface)]/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-[var(--surface)]/40 to-transparent" />
+            </motion.div>
 
             {/* Decorative grid lines */}
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -71,10 +79,20 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.35 }}
-                            className="text-body text-lg sm:text-xl leading-relaxed mb-12 max-w-xl font-body"
+                            className="text-body text-lg sm:text-xl leading-relaxed mb-4 max-w-xl font-body"
                         >
                             From business networks and servers to home WiFi and device setup — security-minded, hands-on technology support done right.
                         </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            className="flex items-center gap-2 mb-12"
+                        >
+                            <MapPin className="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true" />
+                            <span className="text-brand text-sm font-mono tracking-wide">Serving Winter Haven, Lakeland &amp; Central Florida</span>
+                        </motion.div>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -103,12 +121,14 @@ export default function Hero() {
                         className="lg:col-span-4 hidden lg:flex flex-col justify-end gap-6"
                     >
                         {[
-                            { num: '15+', label: 'Years Experience' },
-                            { num: '100%', label: 'Direct Support' },
-                            { num: '24/7', label: 'Emergency Response' },
+                            { num: '15', suffix: '+', label: 'Years Experience' },
+                            { num: '100', suffix: '%', label: 'Direct Support' },
+                            { num: '24/7', suffix: '', label: 'Emergency Response' },
                         ].map((stat) => (
                             <div key={stat.label} className="border-l border-subtle pl-5">
-                                <div className="font-heading font-bold text-2xl text-heading">{stat.num}</div>
+                                <div className="font-heading font-bold text-2xl text-heading">
+                                    <AnimatedCounter value={stat.num} suffix={stat.suffix} />
+                                </div>
                                 <div className="text-muted-theme text-sm font-body mt-0.5">{stat.label}</div>
                             </div>
                         ))}

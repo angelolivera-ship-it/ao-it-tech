@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 export default function Footer() {
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
+
     return (
         <footer className="bg-card-theme border-t border-subtle">
             <div className="max-w-7xl mx-auto px-6 py-20">
@@ -12,7 +16,7 @@ export default function Footer() {
                             <img
                                 src="/images/logo.png"
                                 alt="AO IT Tech"
-                                className="h-32 w-auto shrink-0"
+                                className={`h-32 w-auto shrink-0${isDark ? ' brightness-0 invert' : ''}`}
                             />
                             <p className="text-body text-base leading-relaxed font-body">Trusted IT solutions for local businesses and homes. Security first approach with 15+ years of hands-on experience.</p>
                         </div>
@@ -30,6 +34,7 @@ export default function Footer() {
                         <h4 className="font-heading font-semibold text-heading/60 mb-5 text-xs uppercase tracking-[0.15em]">Company</h4>
                         <div className="flex flex-col gap-3">
                             <Link to="/about" className="text-body text-sm hover:text-heading transition-colors duration-300 font-body">About</Link>
+                            <Link to="/faq" className="text-body text-sm hover:text-heading transition-colors duration-300 font-body">FAQ</Link>
                             <Link to="/contact" className="text-body text-sm hover:text-heading transition-colors duration-300 font-body">Contact</Link>
                         </div>
                     </div>
@@ -43,7 +48,7 @@ export default function Footer() {
                                 <Phone className="w-4 h-4 shrink-0 group-hover:text-brand transition-colors" aria-hidden="true" />(555) 123-4567
                             </a>
                             <div className="flex items-center gap-3 text-body text-sm font-body">
-                                <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />Serving Local Businesses & Homes
+                                <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />Winter Haven, Lakeland &amp; Central Florida
                             </div>
                         </div>
                     </div>

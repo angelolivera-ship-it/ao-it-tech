@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, Bot, Zap } from 'lucide-react';
 
 const features = [
-    { icon: Bot, title: 'AI Agents', desc: 'Custom AI assistants that handle customer inquiries, scheduling, and routine tasks around the clock.' },
-    { icon: Zap, title: 'Workflow Automation', desc: 'Streamline repetitive business processes with intelligent automation that saves hours every week.' },
-    { icon: Sparkles, title: 'Practical AI', desc: 'Real solutions for real businesses — no hype, just tools that save you time and money.' },
+    { icon: Bot, title: 'AI Agents', desc: 'Custom AI assistants that handle customer inquiries, appointment scheduling, and routine tasks 24/7. One client cut response times by 80% and handles 60% of inquiries automatically.' },
+    { icon: Zap, title: 'Workflow Automation', desc: 'Eliminate repetitive data entry, reporting, and follow-ups. We\'ve helped businesses save 10+ hours per week by automating invoice processing, lead routing, and client onboarding.' },
+    { icon: Sparkles, title: 'Practical AI', desc: 'Not sure where AI fits? We identify high-impact opportunities and build a roadmap. No buzzwords — just tools that deliver measurable ROI for your specific business.' },
 ];
 
 export default function AgentAceSection() {
@@ -36,8 +36,10 @@ export default function AgentAceSection() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                     {features.map((feat, i) => (
                         <motion.div key={feat.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className="group relative bg-card-theme border border-subtle rounded-2xl p-7 hover:border-[var(--brand)]/20 transition-all duration-500"
-                            style={{ boxShadow: 'var(--card-shadow)' }}>
+                            className="group relative bg-card-theme border border-subtle rounded-2xl p-7 hover:border-[var(--brand)]/20 transition-all duration-500 hover:-translate-y-1"
+                            style={{ boxShadow: 'var(--card-shadow)' }}
+                            onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--card-shadow-hover)'}
+                            onMouseLeave={e => e.currentTarget.style.boxShadow = 'var(--card-shadow)'}>
                             <div className="absolute top-5 right-5 text-[var(--text-muted)] opacity-20 font-display italic text-5xl pointer-events-none" aria-hidden="true">0{i + 1}</div>
                             <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-5 transition-colors duration-500" style={{ background: 'var(--icon-bg)' }}>
                                 <feat.icon className="w-5 h-5 text-brand" aria-hidden="true" />

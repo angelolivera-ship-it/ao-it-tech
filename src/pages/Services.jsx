@@ -31,7 +31,7 @@ function ServiceGrid({ services }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {services.map((svc, i) => (
                 <motion.div key={svc.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="group relative bg-card-theme border border-subtle rounded-2xl p-7 hover:border-[var(--brand)]/25 transition-all duration-500"
+                    className="group relative bg-card-theme border border-subtle rounded-2xl p-7 hover:border-[var(--brand)]/25 transition-all duration-500 hover:-translate-y-1"
                     style={{ boxShadow: 'var(--card-shadow)' }}
                     onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--card-shadow-hover)'}
                     onMouseLeave={e => e.currentTarget.style.boxShadow = 'var(--card-shadow)'}

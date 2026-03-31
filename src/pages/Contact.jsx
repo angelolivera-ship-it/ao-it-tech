@@ -126,7 +126,8 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <p className="text-muted-theme text-xs font-mono uppercase tracking-wider">Service Area</p>
-                                            <p className="text-heading mt-1 text-sm">Local & Remote Support Available</p>
+                                            <p className="text-heading mt-1 text-sm">Winter Haven, Lakeland, Haines City &amp; Central Florida</p>
+                                            <p className="text-muted-theme mt-0.5 text-xs">Remote support also available</p>
                                         </div>
                                     </div>
                                 </div>
