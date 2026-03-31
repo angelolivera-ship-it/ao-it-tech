@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 220 20% 98%;
+        --foreground: 216 71% 10%;
+        --card: 0 0% 100%;
+        --card-foreground: 216 71% 10%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 216 71% 10%;
+        --primary: 192 100% 50%;
+        --primary-foreground: 216 71% 10%;
+        --secondary: 220 16% 93%;
+        --secondary-foreground: 216 71% 10%;
+        --muted: 220 16% 93%;
+        --muted-foreground: 215 16% 47%;
+        --accent: 220 16% 93%;
+        --accent-foreground: 216 71% 10%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 220 16% 90%;
+        --input: 220 16% 90%;
+        --ring: 192 100% 40%;
+        --chart-1: 192 100% 50%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+        --radius: 0.5rem;
+
+        --font-heading: 'Space Grotesk', sans-serif;
+        --font-display: 'Instrument Serif', serif;
+        --font-body: 'DM Sans', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+
+        /* Semantic theme tokens */
+        --brand: #00D2FF;
+        --brand-text: #0084A8;
+        --navy: #0A1128;
+        --surface: #FAFBFC;
+        --surface-alt: #F1F3F6;
+        --text-primary: #0A1128;
+        --text-secondary: rgba(10, 17, 40, 0.5);
+        --text-muted: rgba(10, 17, 40, 0.35);
+        --border-subtle: rgba(10, 17, 40, 0.06);
+        --border-hover: rgba(10, 17, 40, 0.12);
+        --card-bg: #ffffff;
+        --card-shadow: 0 4px 20px rgba(10, 17, 40, 0.03);
+        --card-shadow-hover: 0 8px 30px rgba(0, 132, 168, 0.06);
+        --glow: rgba(0, 210, 255, 0.3);
+        --glow-subtle: rgba(0, 132, 168, 0.06);
+        --icon-bg: rgba(0, 210, 255, 0.08);
+        --icon-bg-hover: rgba(0, 210, 255, 0.14);
+        --overlay-from: rgba(10, 17, 40, 0.6);
+        --grain-opacity: 0.025;
+        --grain-blend: multiply;
+    }
+
+    .dark {
+        --background: 216 71% 10%;
+        --foreground: 0 0% 98%;
+        --card: 216 60% 13%;
+        --card-foreground: 0 0% 98%;
+        --popover: 216 60% 13%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 192 100% 50%;
+        --primary-foreground: 216 71% 10%;
+        --secondary: 216 50% 16%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 216 50% 16%;
+        --muted-foreground: 215 16% 60%;
+        --accent: 192 100% 50%;
+        --accent-foreground: 216 71% 10%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 216 40% 20%;
+        --input: 216 40% 20%;
+        --ring: 192 100% 50%;
+
+        --brand: #00D2FF;
+        --brand-text: #00D2FF;
+        --navy: #0A1128;
+        --surface: #0A1128;
+        --surface-alt: #0c1633;
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.5);
+        --text-muted: rgba(255, 255, 255, 0.3);
+        --border-subtle: rgba(255, 255, 255, 0.06);
+        --border-hover: rgba(255, 255, 255, 0.12);
+        --card-bg: rgba(255, 255, 255, 0.02);
+        --card-shadow: none;
+        --card-shadow-hover: none;
+        --glow: rgba(0, 210, 255, 0.35);
+        --glow-subtle: rgba(0, 210, 255, 0.06);
+        --icon-bg: rgba(0, 210, 255, 0.07);
+        --icon-bg-hover: rgba(0, 210, 255, 0.14);
+        --overlay-from: rgba(10, 17, 40, 0.8);
+        --grain-opacity: 0.035;
+        --grain-blend: overlay;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    body {
+        font-family: var(--font-body);
+        background: var(--surface);
+        color: var(--text-primary);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        letter-spacing: -0.02em;
+    }
+
+    ::selection {
+        background: rgba(0, 210, 255, 0.2);
+    }
+}
+
+@layer utilities {
+    .font-heading { font-family: var(--font-heading); }
+    .font-display { font-family: var(--font-display); }
+    .font-body { font-family: var(--font-body); }
+    .font-mono { font-family: var(--font-mono); }
+
+    /* Theme-aware utility classes */
+    .bg-surface { background: var(--surface); }
+    .bg-surface-alt { background: var(--surface-alt); }
+    .bg-card-theme { background: var(--card-bg); }
+    .text-heading { color: var(--text-primary); }
+    .text-body { color: var(--text-secondary); }
+    .text-muted-theme { color: var(--text-muted); }
+    .text-brand { color: var(--brand-text); }
+    .border-subtle { border-color: var(--border-subtle); }
+    .border-hover-theme { border-color: var(--border-hover); }
+}
+
+/* Grain texture overlay */
+.grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    mix-blend-mode: var(--grain-blend);
+}
+
+/* Accent lines */
+.rule-accent {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.2), transparent);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+}

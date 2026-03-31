@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(npm run:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(find C:/Projects/AgentAce/client/src -name *.css -o -name tailwind.config.* -o -name globals.css)",
+      "Bash(cd:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(gh repo:*)",
+      "Bash(where gh.exe)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth status 2>&1)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo create angelolivera-ship-it/ao-it-tech --private --description \"AO IT Tech — IT Infrastructure You Can Rely On\" 2>&1)"
+    ]
+  }
+}
