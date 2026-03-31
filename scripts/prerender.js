@@ -76,7 +76,16 @@ async function prerender() {
 
         for (const route of routes) {
             // Render the app to HTML string
-            const appHtml = render(route.path);
+            let appHtml = render(route.path);
+
+            // Strip Framer Motion initial animation styles (opacity:0, transforms)
+            // so crawlers and no-JS visitors see fully visible content
+            appHtml = appHtml
+                .replace(/\s*style="opacity:0[^"]*"/g, '')
+                .replace(/\s*style="([^"]*?)opacity:0;?([^"]*)"/g, (match, before, after) => {
+                    const remaining = (before + after).replace(/;+/g, ';').replace(/^;|;$/g, '').trim();
+                    return remaining ? ` style="${remaining}"` : '';
+                });
 
             // Build the full page
             let html = baseHtml

@@ -1,17 +1,23 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 
+const isSSR = typeof window === 'undefined' || !!globalThis.__SSR__;
+
 export default function AnimatedCounter({ value, suffix = '', duration = 2000, delay = 0 }) {
     const ref = useRef(null);
     const hasAnimated = useRef(false);
 
     // Parse the numeric part and any prefix/suffix
     const numericMatch = value.match(/^(\D*)(\d+)(\D*)$/);
-    const isAnimatable = !!numericMatch;
+    const isAnimatable = !!numericMatch && !isSSR;
     const prefix = numericMatch ? numericMatch[1] : '';
     const target = numericMatch ? parseInt(numericMatch[2], 10) : 0;
     const trailingSuffix = numericMatch ? numericMatch[3] + suffix : suffix;
 
-    const [display, setDisplay] = useState(isAnimatable ? '0' : value);
+    // During SSR, show the final value immediately
+    const [display, setDisplay] = useState(
+        isSSR ? (numericMatch ? String(target) : value)
+            : (numericMatch ? '0' : value)
+    );
 
     const startAnimation = useCallback(() => {
         if (hasAnimated.current || !isAnimatable) return;
@@ -58,7 +64,7 @@ export default function AnimatedCounter({ value, suffix = '', duration = 2000, d
         return () => observer.disconnect();
     }, [isAnimatable, startAnimation]);
 
-    if (!isAnimatable) {
+    if (!numericMatch) {
         return <span ref={ref}>{value}</span>;
     }
 
