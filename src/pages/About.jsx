@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Clock3, Eye, Lock, ShieldCheck, Target, Zap } from 'lucide-react';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
 
 const operatingStandards = [
     {
@@ -59,7 +60,7 @@ export default function About() {
                             <div className="mt-10 grid gap-3 sm:grid-cols-3">
                                 {[{ value: '2009', label: 'Founded' }, { value: '15+', label: 'Years in the field' }, { value: 'Central FL', label: 'Service focus' }].map((item) => (
                                     <div key={item.label} className="rounded-[1.75rem] border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] px-5 py-5">
-                                        <div className="font-heading text-3xl font-semibold text-heading">{item.value}</div>
+                                        <div className="font-heading text-3xl font-semibold text-heading"><AnimatedCounter value={item.value} duration={1500} /></div>
                                         <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--prose-faint)]">{item.label}</div>
                                     </div>
                                 ))}

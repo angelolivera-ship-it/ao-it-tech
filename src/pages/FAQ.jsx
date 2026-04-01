@@ -73,18 +73,18 @@ const faqs = [
     },
 ];
 
-function FAQItem({ question, answer, isOpen, onToggle, dark = false }) {
+function FAQItem({ question, answer, isOpen, onToggle }) {
     return (
-        <div className={`overflow-hidden rounded-[1.8rem] border transition-colors duration-300 ${dark ? 'border-white/10 bg-white/[0.04]' : 'border-[var(--panel-light-border)] bg-[var(--panel-light-bg)]'}`}>
+        <div className="overflow-hidden rounded-[1.8rem] border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] transition-colors duration-300">
             <button
                 onClick={onToggle}
                 className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none"
                 aria-expanded={isOpen}
             >
-                <span className={`pr-4 font-heading text-base font-semibold sm:text-lg ${dark ? 'text-white' : 'text-heading'}`}>{question}</span>
+                <span className="pr-4 font-heading text-base font-semibold text-heading sm:text-lg">{question}</span>
                 <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[1rem] transition-all duration-300 ${isOpen
-                    ? dark ? 'bg-white text-[var(--navy)]' : 'bg-[var(--navy)] text-white'
-                    : dark ? 'bg-white/[0.08] text-[#9DDFF0]' : 'bg-[rgba(0,132,168,0.1)] text-brand'
+                    ? 'bg-[var(--brand)] text-white'
+                    : 'bg-[rgba(0,132,168,0.1)] dark:bg-[rgba(0,210,255,0.1)] text-brand'
                     }`}>
                     {isOpen ? <Minus className="h-4 w-4" aria-hidden="true" /> : <Plus className="h-4 w-4" aria-hidden="true" />}
                 </span>
@@ -96,7 +96,7 @@ function FAQItem({ question, answer, isOpen, onToggle, dark = false }) {
                 className="overflow-hidden"
             >
                 <div className="px-6 pb-6 pt-0">
-                    <p className={`text-sm leading-relaxed sm:text-base ${dark ? 'text-white/68' : 'text-[var(--prose)]'}`}>{answer}</p>
+                    <p className="text-sm leading-relaxed text-[var(--prose)] sm:text-base">{answer}</p>
                 </div>
             </motion.div>
         </div>
@@ -143,7 +143,7 @@ export default function FAQ() {
                                 <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Categories</div>
                                 <div className="mt-6 space-y-3">
                                     {faqs.map((group) => (
-                                        <div key={group.category} className="rounded-[1.4rem] border border-[var(--panel-light-border)] bg-[rgba(255,255,255,0.72)] px-4 py-4">
+                                        <div key={group.category} className="rounded-[1.4rem] border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] px-4 py-4">
                                             <div className="font-heading text-lg font-semibold text-heading">{group.category}</div>
                                             <p className="mt-2 text-sm leading-relaxed text-[var(--prose-muted)]">{group.intro}</p>
                                         </div>
@@ -153,37 +153,33 @@ export default function FAQ() {
                         </motion.div>
 
                         <div className="lg:col-span-8 space-y-6">
-                            {faqs.map((group, ci) => {
-                                const dark = ci % 2 === 1;
-                                return (
-                                    <motion.section
-                                        key={group.category}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: '-80px' }}
-                                        transition={{ duration: 0.5, delay: ci * 0.06 }}
-                                        className={`rounded-[2rem] p-6 sm:p-7 ${dark ? 'panel-premium-dark text-white' : 'panel-premium-light text-heading'}`}
-                                    >
-                                        <div className={`font-mono text-[11px] uppercase tracking-[0.22em] ${dark ? 'text-[#9DDFF0]' : 'text-copper'}`}>{group.category}</div>
-                                        <p className={`mt-3 max-w-2xl text-sm leading-relaxed ${dark ? 'text-white/66' : 'text-[var(--prose-muted)]'}`}>{group.intro}</p>
-                                        <div className="mt-6 flex flex-col gap-3">
-                                            {group.questions.map((faq, qi) => {
-                                                const key = `${ci}-${qi}`;
-                                                return (
-                                                    <FAQItem
-                                                        key={key}
-                                                        question={faq.q}
-                                                        answer={faq.a}
-                                                        isOpen={!!openItems[key]}
-                                                        onToggle={() => toggleItem(key)}
-                                                        dark={dark}
-                                                    />
-                                                );
-                                            })}
-                                        </div>
-                                    </motion.section>
-                                );
-                            })}
+                            {faqs.map((group, ci) => (
+                                <motion.section
+                                    key={group.category}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-80px' }}
+                                    transition={{ duration: 0.5, delay: ci * 0.06 }}
+                                    className="panel-premium-light rounded-[2rem] p-6 sm:p-7"
+                                >
+                                    <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">{group.category}</div>
+                                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--prose-muted)]">{group.intro}</p>
+                                    <div className="mt-6 flex flex-col gap-3">
+                                        {group.questions.map((faq, qi) => {
+                                            const key = `${ci}-${qi}`;
+                                            return (
+                                                <FAQItem
+                                                    key={key}
+                                                    question={faq.q}
+                                                    answer={faq.a}
+                                                    isOpen={!!openItems[key]}
+                                                    onToggle={() => toggleItem(key)}
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                </motion.section>
+                            ))}
 
                             <motion.div
                                 initial={{ opacity: 0, y: 18 }}

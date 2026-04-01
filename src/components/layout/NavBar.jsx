@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { useTheme } from 'next-themes';
@@ -78,6 +78,16 @@ export default function NavBar() {
                     <div className={`w-px h-5 mx-2 transition-colors duration-300 ${useLight ? 'bg-white/15' : 'bg-[#0A1128]/10'}`} />
                     <ThemeToggle light={useLight} />
                     <div className={`w-px h-5 mx-2 transition-colors duration-300 ${useLight ? 'bg-white/15' : 'bg-[#0A1128]/10'}`} />
+                    <div className="hidden lg:flex items-center gap-1">
+                        <a href="tel:+18632880163" className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-sm font-heading font-medium transition-colors duration-300 ${useLight ? 'text-white/70 hover:text-white hover:bg-white/[0.06]' : 'text-[#0A1128]/60 hover:text-[#0A1128] hover:bg-[#0A1128]/[0.04]'}`} title="Call us">
+                            <Phone className="h-3.5 w-3.5" aria-hidden="true" />
+                            (863) 288-0163
+                        </a>
+                        <a href="sms:+18632880163" className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-300 ${useLight ? 'text-white/50 hover:text-white hover:bg-white/[0.06]' : 'text-[#0A1128]/40 hover:text-[#0A1128] hover:bg-[#0A1128]/[0.04]'}`} title="Send a text">
+                            <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
+                        </a>
+                    </div>
+                    <div className={`hidden lg:block w-px h-5 mx-2 transition-colors duration-300 ${useLight ? 'bg-white/15' : 'bg-[#0A1128]/10'}`} />
                     <Link to="/contact">
                         <Button className="btn-premium-primary h-11 rounded-full px-5 font-heading text-sm font-semibold">
                             Get Support
@@ -128,6 +138,16 @@ export default function NavBar() {
                                 </motion.div>
                             ))}
                             <div className="rule-accent my-4" />
+                            <div className="flex items-center gap-2">
+                                <a href="tel:+18632880163" className="flex-1 flex items-center gap-3 px-4 py-3 rounded-lg text-brand hover:bg-[var(--icon-bg)] transition-colors">
+                                    <Phone className="h-4 w-4" aria-hidden="true" />
+                                    <span className="font-heading font-medium text-lg">(863) 288-0163</span>
+                                </a>
+                                <a href="sms:+18632880163" className="flex items-center justify-center w-12 h-12 rounded-lg text-brand hover:bg-[var(--icon-bg)] transition-colors" title="Send a text">
+                                    <MessageSquare className="h-5 w-5" aria-hidden="true" />
+                                </a>
+                            </div>
+                            <div className="mt-2" />
                             <Link to="/contact">
                                 <Button className="btn-premium-primary w-full rounded-full font-heading font-semibold">
                                     Get Support

@@ -69,7 +69,7 @@ export default function Hero() {
                             <img
                                 src="/images/logo.png"
                                 alt="AO IT Tech"
-                                className="h-56 w-auto -mb-8 sm:h-72 sm:-mb-12 lg:h-96 lg:-mb-16 dark:brightness-0 dark:invert"
+                                className="h-40 w-auto mx-auto -mb-6 sm:h-72 sm:-mb-12 sm:mx-0 lg:h-96 lg:-mb-16 dark:brightness-0 dark:invert"
                             />
                             <div className="inline-flex items-center gap-2.5 rounded-full border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] backdrop-blur-md px-4 py-2">
                                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
