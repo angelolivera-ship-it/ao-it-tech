@@ -2,47 +2,97 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, House, Router, Settings2, Wifi } from 'lucide-react';
 
-const features = ['Home WiFi setup & optimization', 'Computer repair & maintenance', 'Printer & device configuration', 'Email & account setup', 'Smart home networking', 'General troubleshooting'];
+const homeServices = [
+    { icon: Wifi, title: 'WiFi coverage tuning', detail: 'Eliminate dead zones, stabilize mesh systems, and simplify the way devices connect.' },
+    { icon: Router, title: 'Device and printer setup', detail: 'Get household tech talking to each other without the usual setup maze.' },
+    { icon: Settings2, title: 'Repairs and troubleshooting', detail: 'Fix what is slow, flaky, disconnected, or misconfigured before it becomes a bigger interruption.' },
+];
 
 export default function HomeTech() {
     return (
-        <section className="relative py-32 bg-surface-alt">
+        <section className="section-frame relative overflow-hidden bg-surface-warm py-28 sm:py-32">
             <div className="absolute top-0 left-0 right-0 rule-accent" />
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-                    <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.7 }} className="order-2 lg:order-1 lg:col-span-7">
-                        <span className="text-brand text-xs font-mono uppercase tracking-[0.2em]">For Home</span>
-                        <h2 className="mt-4 mb-6">
-                            <span className="font-heading font-bold text-3xl sm:text-4xl text-heading block">Tech support that</span>
-                            <span className="font-display italic text-4xl sm:text-5xl text-brand block mt-1">comes to you</span>
-                        </h2>
-                        <p className="text-body text-base leading-relaxed mb-10 font-body max-w-lg">Your home technology should work seamlessly. Whether it's a WiFi dead zone, a stubborn printer, or a new device that needs setting up — every job gets the same professionalism and care, whether it's a business or a home.</p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-                            {features.map(f => (
-                                <div key={f} className="flex items-center gap-3 group/item">
-                                    <CheckCircle2 className="w-4 h-4 text-[var(--brand)]/60 shrink-0 group-hover/item:text-brand transition-colors" aria-hidden="true" />
-                                    <span className="text-body text-sm group-hover/item:text-heading transition-colors">{f}</span>
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_85%_20%,rgba(0,132,168,0.08),transparent_28%),radial-gradient(circle_at_12%_82%,rgba(185,134,74,0.12),transparent_26%)]" aria-hidden="true" />
+
+            <div className="relative max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.6 }}
+                        className="lg:col-span-6"
+                    >
+                        <div className="rounded-[2.25rem] border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] p-8 sm:p-10">
+                            <div className="inline-flex items-center gap-3 rounded-full border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] px-4 py-2">
+                                <House className="h-4 w-4 text-copper" aria-hidden="true" />
+                                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--prose-muted)]">For homes</span>
+                            </div>
+
+                            <h2 className="mt-6 text-balance">
+                                <span className="block font-heading text-3xl font-bold text-heading sm:text-4xl">House-call support with</span>
+                                <span className="mt-1 block font-display text-4xl italic text-brand sm:text-5xl">a concierge feel.</span>
+                            </h2>
+
+                            <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--prose)]">
+                                Home support should feel calm, efficient, and respectful of your time. From WiFi issues to device setup, the goal is a cleaner experience, clearer explanations, and technology that works the way it should.
+                            </p>
+
+                            <div className="mt-8 space-y-3">
+                                {homeServices.map((service) => (
+                                    <div key={service.title} className="rounded-[1.6rem] border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] px-5 py-5">
+                                        <div className="flex items-center gap-3">
+                                            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[rgba(0,132,168,0.1)] text-brand">
+                                                <service.icon className="h-5 w-5" aria-hidden="true" />
+                                            </span>
+                                            <div className="font-heading text-lg font-semibold text-heading">{service.title}</div>
+                                        </div>
+                                        <p className="mt-3 text-sm leading-relaxed text-[var(--prose-muted)]">{service.detail}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+                                <Link to="/contact">
+                                    <Button className="btn-premium-primary h-14 rounded-full px-8 text-sm font-heading font-semibold">
+                                        Get Home Support
+                                        <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </Link>
+                                <div className="rounded-full border border-[var(--panel-light-border)] px-5 py-3 text-sm text-[var(--prose-muted)]">
+                                    Same-day visits available when schedules allow
                                 </div>
-                            ))}
+                            </div>
                         </div>
-                        <Link to="/contact">
-                            <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold hover:shadow-[0_0_24px_var(--glow)] transition-all duration-500">
-                                Get Home Support <ArrowRight className="w-4 h-4 ml-2" />
-                            </Button>
-                        </Link>
                     </motion.div>
 
-                    <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.7 }} className="order-1 lg:order-2 lg:col-span-5">
-                        <div className="relative group">
-                            <div className="relative rounded-2xl overflow-hidden border border-subtle">
-                                <img src="/images/home-tech.png" alt="Modern workspace with multiple monitors showing system dashboards" className="w-full h-80 lg:h-[28rem] object-cover transition-transform duration-700 group-hover:scale-[1.02]" width={640} height={448} loading="lazy" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128]/60 via-transparent to-transparent" />
-                            </div>
-                            <div className="absolute -bottom-4 left-6 right-6 bg-card-theme backdrop-blur-xl border border-subtle rounded-xl px-5 py-3 flex items-center gap-3" style={{ boxShadow: 'var(--card-shadow)' }}>
-                                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                                <span className="text-body text-xs font-mono">Same-day home visits available</span>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="lg:col-span-6"
+                    >
+                        <div className="relative overflow-hidden rounded-[2.25rem] border border-[var(--panel-light-border)]">
+                            <img
+                                src="/images/home-tech.png"
+                                alt="Modern home technology workspace with connected devices"
+                                className="h-[26rem] w-full object-cover sm:h-[38rem]"
+                                width={960}
+                                height={1240}
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,17,40,0.72)] via-transparent to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
+                                <div className="panel-premium-light rounded-[1.7rem] p-5">
+                                    <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-copper">At-home support</div>
+                                    <div className="mt-3 font-heading text-2xl font-semibold text-heading">Clean setup, clear explanation, less friction every day.</div>
+                                    <p className="mt-3 max-w-lg text-sm leading-relaxed text-[var(--prose)]">
+                                        Every visit is handled with the same professionalism as a business engagement, just adapted to the pace and priorities of home technology.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </motion.div>

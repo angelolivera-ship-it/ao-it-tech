@@ -11,7 +11,7 @@ import PageNotFound from '@/pages/PageNotFound';
 
 function App() {
     return (
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="dark">
             <Router>
                 <Routes>
                     <Route element={<SiteLayout />}>

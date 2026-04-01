@@ -45,7 +45,7 @@ export default function Footer() {
                                 <Mail className="w-4 h-4 shrink-0 group-hover:text-brand transition-colors" aria-hidden="true" />contact@aoittech.com
                             </a>
                             <a href="tel:+15551234567" className="flex items-center gap-3 text-body text-sm hover:text-heading transition-colors duration-300 font-body group">
-                                <Phone className="w-4 h-4 shrink-0 group-hover:text-brand transition-colors" aria-hidden="true" />(555) 123-4567
+                                <Phone className="w-4 h-4 shrink-0 group-hover:text-brand transition-colors" aria-hidden="true" />(863) 288-0163
                             </a>
                             <div className="flex items-center gap-3 text-body text-sm font-body">
                                 <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />Winter Haven, Lakeland &amp; Central Florida

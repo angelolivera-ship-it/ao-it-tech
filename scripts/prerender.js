@@ -21,11 +21,11 @@ globalThis.document = window.document;
 globalThis.self = window;
 globalThis.localStorage = window.localStorage;
 Object.defineProperty(globalThis, 'navigator', { value: window.navigator, writable: true, configurable: true });
-globalThis.SVGElement = window.SVGElement || class SVGElement {};
-globalThis.HTMLElement = window.HTMLElement || class HTMLElement {};
-globalThis.Element = window.Element || class Element {};
-globalThis.Image = window.Image || class Image {};
-globalThis.matchMedia = window.matchMedia || (() => ({ matches: false, addListener: () => {}, removeListener: () => {} }));
+globalThis.SVGElement = window.SVGElement || class SVGElement { };
+globalThis.HTMLElement = window.HTMLElement || class HTMLElement { };
+globalThis.Element = window.Element || class Element { };
+globalThis.Image = window.Image || class Image { };
+globalThis.matchMedia = window.matchMedia || (() => ({ matches: false, addListener: () => { }, removeListener: () => { } }));
 globalThis.requestAnimationFrame = (cb) => setTimeout(cb, 0);
 globalThis.cancelAnimationFrame = clearTimeout;
 
@@ -148,7 +148,7 @@ async function prerender() {
                         { "@type": "AdministrativeArea", "name": "Central Florida" }
                     ],
                     "serviceType": ["IT Support", "Managed IT Services", "Network Infrastructure", "Cybersecurity", "Cloud Migration", "AI Solutions", "Computer Repair"],
-                    "telephone": "(555) 123-4567",
+                    "telephone": "(863) 288-0163",
                     "email": "contact@aoittech.com",
                     "priceRange": "$$",
                     "knowsAbout": ["IT Infrastructure", "Network Security", "Microsoft 365", "AI Automation", "Server Management"]

@@ -79,7 +79,7 @@ export default function NavBar() {
                     <ThemeToggle light={useLight} />
                     <div className={`w-px h-5 mx-2 transition-colors duration-300 ${useLight ? 'bg-white/15' : 'bg-[#0A1128]/10'}`} />
                     <Link to="/contact">
-                        <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold text-sm px-5 hover:shadow-[0_0_24px_var(--glow)] transition-all duration-300">
+                        <Button className="btn-premium-primary h-11 rounded-full px-5 font-heading text-sm font-semibold">
                             Get Support
                         </Button>
                     </Link>
@@ -129,7 +129,7 @@ export default function NavBar() {
                             ))}
                             <div className="rule-accent my-4" />
                             <Link to="/contact">
-                                <Button className="w-full bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold">
+                                <Button className="btn-premium-primary w-full rounded-full font-heading font-semibold">
                                     Get Support
                                 </Button>
                             </Link>

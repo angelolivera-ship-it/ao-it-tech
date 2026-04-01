@@ -1,102 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Plus, Minus } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Minus, Plus } from 'lucide-react';
 
 const faqs = [
     {
         category: 'General',
+        intro: 'Common first-response questions for the issues people ask about most often.',
         questions: [
             {
-                q: 'My internet is slow — what should I do first?',
-                a: 'Start by restarting your modem and router — unplug them for 30 seconds, then plug them back in. If the issue persists, run a speed test (speedtest.net) to see if you\'re getting the speeds your ISP promised. If you\'re on WiFi, try connecting via ethernet to rule out a wireless issue. Still slow? That\'s when it\'s time to call — it could be a congested network, outdated hardware, or an ISP problem. We diagnose it fast and fix it right.',
+                q: 'My internet is slow. What should I do first?',
+                a: 'Restart the modem and router, then test speeds again. If the issue remains, compare WiFi versus ethernet to isolate whether the problem is coverage, local hardware, or the provider connection. If it is still unclear, the next step is diagnosis rather than guesswork.',
             },
             {
-                q: 'I think my computer has a virus. What do I do?',
-                a: 'Disconnect from the internet immediately — this prevents the malware from spreading or sending data out. Don\'t enter any passwords or open banking apps. If you have antivirus software, run a full scan. If not, or if you\'re unsure, call us. We handle virus removal, malware cleanup, and can set up proper endpoint protection so it doesn\'t happen again.',
+                q: 'I think my computer has a virus. What now?',
+                a: 'Disconnect it from the internet, avoid entering passwords, and stop using sensitive accounts from that device. Then have it checked properly. Malware cleanup is most effective when it is handled quickly and followed by stronger protection afterward.',
             },
             {
-                q: 'How much does IT support cost for a small business?',
-                a: 'It depends on your needs and the complexity of the work. Most IT support runs between $75–200 per hour. We offer flexible options — from full managed IT to on-call support for when things break. Every engagement starts with a free consultation so we can understand your setup and recommend the right fit without overselling.',
-            },
-            {
-                q: 'What\'s the difference between managed IT and break-fix?',
-                a: 'Break-fix means you call us when something goes wrong, and we charge per incident. Managed IT is proactive — we monitor your systems, apply updates, manage security, and prevent problems before they happen. Most businesses save money with managed IT because preventing a network outage is always cheaper than recovering from one.',
+                q: 'How much does small business IT support usually cost?',
+                a: 'Pricing depends on scope, urgency, and whether the work is reactive or ongoing. The fastest way to get a real number is a short review of what is breaking, what needs protection, and how much continuity matters to the business.',
             },
         ],
     },
     {
-        category: 'Services',
+        category: 'Business IT',
+        intro: 'Questions around office infrastructure, support posture, and continuity.',
         questions: [
             {
-                q: 'Can you help us move to Microsoft 365 or the cloud?',
-                a: 'Absolutely. Cloud migration is one of our core services. We handle the full process — planning, data migration, email setup, user training, and security configuration. Whether you\'re moving from on-premise Exchange to Microsoft 365, or migrating file servers to SharePoint/OneDrive, we make it seamless with zero data loss and minimal downtime.',
+                q: 'What is the difference between managed IT and break-fix support?',
+                a: 'Break-fix means support starts after something fails. Managed IT is more proactive: systems are monitored, updated, and protected to reduce the number and severity of failures in the first place.',
             },
             {
-                q: 'Do you support remote and hybrid teams?',
-                a: 'Yes — this is a big part of what we do post-2020. We set up secure VPN access, remote desktop solutions, cloud-based collaboration tools, and endpoint protection for remote devices. Your team can work from anywhere without compromising security or productivity.',
+                q: 'Can you help with Microsoft 365, cloud migration, or hybrid work?',
+                a: 'Yes. That typically includes planning the move, protecting data, setting up accounts and access, and making sure the result is simpler to support than what was there before.',
             },
             {
-                q: 'What if something breaks at 2 AM?',
-                a: 'We offer emergency support for critical issues. If your server goes down or you\'re dealing with a security incident outside business hours, call directly — downtime costs money, and we treat it with urgency. Our managed IT clients get priority emergency response.',
+                q: 'What if something critical breaks after hours?',
+                a: 'Urgent outages and security concerns are treated with priority. The right move is to call directly so the business impact can be assessed quickly and the first stabilizing actions can happen without delay.',
             },
         ],
     },
     {
         category: 'Security',
+        intro: 'Questions where response speed and good judgment matter.',
         questions: [
             {
-                q: 'My email got hacked — what do I do right now?',
-                a: 'Change your password immediately from a different device. Enable multi-factor authentication if it\'s not already on. Check your sent folder and email rules for any forwarding rules the attacker may have set up. Alert your contacts that your account was compromised. Then call us — we\'ll do a full security audit, check for lateral access to other systems, and lock everything down properly.',
+                q: 'My email account was compromised. What should I do right now?',
+                a: 'Change the password from a safe device, enable MFA if it is missing, review forwarding rules, and assume related systems may also need checking. After that, the job is containment and review, not just resetting one password and hoping for the best.',
             },
         ],
     },
     {
-        category: 'AI & Agent Ace',
+        category: 'Agent Ace',
+        intro: 'Questions about AI and how it fits into real operations.',
         questions: [
             {
-                q: 'What is Agent Ace and how can AI help my business?',
-                a: 'Agent Ace is the AI solutions arm of AO IT Tech. We build practical AI tools for businesses — things like custom AI chatbots that handle customer inquiries 24/7, workflow automations that eliminate repetitive data entry, and AI-powered scheduling assistants. These aren\'t experiments — they\'re tools that save real businesses real time. We\'ve helped companies cut response times by 80% and save 10+ hours per week on routine tasks.',
+                q: 'What is Agent Ace and how can it help my business?',
+                a: 'Agent Ace is the AI and automation arm of AO IT Tech. It focuses on practical use cases like inquiry handling, workflow automation, and administrative reduction, with an emphasis on measurable business value instead of hype.',
             },
         ],
     },
     {
-        category: 'Working with Us',
+        category: 'Working together',
+        intro: 'Questions about what it is like to work with AO IT Tech.',
         questions: [
             {
-                q: 'Why should I hire a local IT person instead of a big company?',
-                a: 'With a big company, you get a ticket number. With AO IT Tech, you get Angel — someone who knows your systems, understands your business, and picks up the phone when it matters. There\'s no call center, no rotating technicians, no upselling. Just direct, knowledgeable support from someone invested in keeping your technology running. That personal relationship means faster diagnosis, better solutions, and real accountability.',
+                q: 'Why work with a local specialist instead of a larger provider?',
+                a: 'The advantage is direct accountability. You are not routed through layers of support before someone understands the environment. That usually leads to faster diagnosis, better continuity, and less communication drag when something matters.',
             },
         ],
     },
 ];
 
-function FAQItem({ question, answer, isOpen, onToggle }) {
+function FAQItem({ question, answer, isOpen, onToggle, dark = false }) {
     return (
-        <div className="border border-subtle rounded-2xl overflow-hidden transition-all duration-300 hover:border-hover-theme">
+        <div className={`overflow-hidden rounded-[1.8rem] border transition-colors duration-300 ${dark ? 'border-white/10 bg-white/[0.04]' : 'border-[var(--panel-light-border)] bg-[var(--panel-light-bg)]'}`}>
             <button
                 onClick={onToggle}
-                className="w-full flex items-center justify-between gap-4 p-6 text-left focus-visible:ring-2 focus-visible:ring-[var(--brand)]/50 focus-visible:outline-none"
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none"
                 aria-expanded={isOpen}
             >
-                <span className="font-heading font-semibold text-heading text-base sm:text-lg pr-4">{question}</span>
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? 'bg-[var(--brand)] rotate-0' : 'bg-[var(--icon-bg)]'}`}>
-                    {isOpen
-                        ? <Minus className={`w-4 h-4 ${isOpen ? 'text-white' : 'text-brand'}`} aria-hidden="true" />
-                        : <Plus className="w-4 h-4 text-brand" aria-hidden="true" />
-                    }
-                </div>
+                <span className={`pr-4 font-heading text-base font-semibold sm:text-lg ${dark ? 'text-white' : 'text-heading'}`}>{question}</span>
+                <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[1rem] transition-all duration-300 ${isOpen
+                    ? dark ? 'bg-white text-[var(--navy)]' : 'bg-[var(--navy)] text-white'
+                    : dark ? 'bg-white/[0.08] text-[#9DDFF0]' : 'bg-[rgba(0,132,168,0.1)] text-brand'
+                    }`}>
+                    {isOpen ? <Minus className="h-4 w-4" aria-hidden="true" /> : <Plus className="h-4 w-4" aria-hidden="true" />}
+                </span>
             </button>
             <motion.div
                 initial={false}
                 animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                transition={{ duration: 0.28, ease: 'easeInOut' }}
                 className="overflow-hidden"
             >
                 <div className="px-6 pb-6 pt-0">
-                    <p className="text-body text-sm sm:text-base leading-relaxed font-body">{answer}</p>
+                    <p className={`text-sm leading-relaxed sm:text-base ${dark ? 'text-white/68' : 'text-[var(--prose)]'}`}>{answer}</p>
                 </div>
             </motion.div>
         </div>
@@ -107,75 +107,110 @@ export default function FAQ() {
     const [openItems, setOpenItems] = useState({});
 
     const toggleItem = (key) => {
-        setOpenItems(prev => ({ ...prev, [key]: !prev[key] }));
+        setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
     };
 
     return (
         <div className="bg-surface">
-            <section className="pt-40 pb-16">
-                <div className="max-w-7xl mx-auto px-6">
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
-                        <span className="text-brand text-xs font-mono uppercase tracking-[0.2em]">FAQ</span>
-                        <h1 className="mt-4 mb-6">
-                            <span className="font-heading font-bold text-4xl sm:text-5xl text-heading block">Common questions,</span>
-                            <span className="font-display italic text-5xl sm:text-6xl text-brand block mt-1">straight answers</span>
+            <section className="section-frame relative overflow-hidden bg-surface-warm pt-36 pb-20 sm:pt-40 sm:pb-20">
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,rgba(0,132,168,0.12),transparent_34%),radial-gradient(circle_at_top_right,rgba(185,134,74,0.16),transparent_24%)]" aria-hidden="true" />
+
+                <div className="relative max-w-7xl mx-auto px-6">
+                    <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} className="max-w-4xl">
+                        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">FAQ</div>
+                        <h1 className="mt-6 leading-[0.98]" style={{ textWrap: 'balance' }}>
+                            <span className="block font-heading text-5xl font-bold tracking-[-0.04em] text-heading sm:text-6xl lg:text-7xl">Common questions.</span>
+                            <span className="mt-2 block font-display text-5xl italic text-brand sm:text-6xl lg:text-7xl">Straight answers.</span>
                         </h1>
-                        <p className="text-body text-lg leading-relaxed font-body">Real answers to the questions we hear most. If you don't find what you're looking for, reach out — we're happy to help.</p>
+                        <p className="mt-8 max-w-3xl text-lg leading-relaxed text-[var(--prose)] sm:text-xl">
+                            These are the issues and decision points clients ask about most. If your situation is more specific, reach out and describe what is happening.
+                        </p>
                     </motion.div>
                 </div>
             </section>
 
-            <section className="pb-28">
-                <div className="max-w-3xl mx-auto px-6">
-                    {faqs.map((category, ci) => (
+            <section className="section-frame relative overflow-hidden bg-surface-cream py-20 sm:py-24">
+                <div className="relative max-w-7xl mx-auto px-6">
+                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
                         <motion.div
-                            key={category.category}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: ci * 0.1 }}
-                            className="mb-12"
+                            viewport={{ once: true, margin: '-80px' }}
+                            transition={{ duration: 0.6 }}
+                            className="lg:col-span-4"
                         >
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="h-px w-8 bg-[var(--brand)]" />
-                                <h2 className="text-brand text-xs font-mono uppercase tracking-[0.2em]">{category.category}</h2>
-                            </div>
-                            <div className="flex flex-col gap-3">
-                                {category.questions.map((faq, qi) => {
-                                    const key = `${ci}-${qi}`;
-                                    return (
-                                        <FAQItem
-                                            key={key}
-                                            question={faq.q}
-                                            answer={faq.a}
-                                            isOpen={!!openItems[key]}
-                                            onToggle={() => toggleItem(key)}
-                                        />
-                                    );
-                                })}
+                            <div className="lg:sticky lg:top-28 rounded-[2rem] border border-[var(--panel-light-border)] bg-[var(--panel-light-bg)] p-7">
+                                <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Categories</div>
+                                <div className="mt-6 space-y-3">
+                                    {faqs.map((group) => (
+                                        <div key={group.category} className="rounded-[1.4rem] border border-[var(--panel-light-border)] bg-[rgba(255,255,255,0.72)] px-4 py-4">
+                                            <div className="font-heading text-lg font-semibold text-heading">{group.category}</div>
+                                            <p className="mt-2 text-sm leading-relaxed text-[var(--prose-muted)]">{group.intro}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </motion.div>
-                    ))}
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="mt-16 text-center bg-card-theme border border-subtle rounded-3xl p-10 sm:p-14"
-                        style={{ boxShadow: 'var(--card-shadow)' }}
-                    >
-                        <h2 className="mb-4">
-                            <span className="font-heading font-bold text-2xl sm:text-3xl text-heading block">Still have questions?</span>
-                            <span className="font-display italic text-3xl sm:text-4xl text-brand block mt-1">Let's talk.</span>
-                        </h2>
-                        <p className="text-body text-base mb-8 font-body max-w-md mx-auto">Every situation is different. Reach out for a free consultation and get advice tailored to your specific needs.</p>
-                        <Link to="/contact">
-                            <Button className="bg-[var(--brand)] text-white hover:opacity-90 font-heading font-semibold text-base px-8 py-6 hover:shadow-[0_0_40px_var(--glow)] transition-all duration-500">
-                                Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
-                            </Button>
-                        </Link>
-                    </motion.div>
+                        <div className="lg:col-span-8 space-y-6">
+                            {faqs.map((group, ci) => {
+                                const dark = ci % 2 === 1;
+                                return (
+                                    <motion.section
+                                        key={group.category}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: '-80px' }}
+                                        transition={{ duration: 0.5, delay: ci * 0.06 }}
+                                        className={`rounded-[2rem] p-6 sm:p-7 ${dark ? 'panel-premium-dark text-white' : 'panel-premium-light text-heading'}`}
+                                    >
+                                        <div className={`font-mono text-[11px] uppercase tracking-[0.22em] ${dark ? 'text-[#9DDFF0]' : 'text-copper'}`}>{group.category}</div>
+                                        <p className={`mt-3 max-w-2xl text-sm leading-relaxed ${dark ? 'text-white/66' : 'text-[var(--prose-muted)]'}`}>{group.intro}</p>
+                                        <div className="mt-6 flex flex-col gap-3">
+                                            {group.questions.map((faq, qi) => {
+                                                const key = `${ci}-${qi}`;
+                                                return (
+                                                    <FAQItem
+                                                        key={key}
+                                                        question={faq.q}
+                                                        answer={faq.a}
+                                                        isOpen={!!openItems[key]}
+                                                        onToggle={() => toggleItem(key)}
+                                                        dark={dark}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+                                    </motion.section>
+                                );
+                            })}
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 18 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-80px' }}
+                                transition={{ duration: 0.55 }}
+                                className="panel-premium-light rounded-[2.2rem] px-8 py-10 text-center"
+                            >
+                                <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Still unsure?</div>
+                                <h2 className="mt-5 text-balance">
+                                    <span className="block font-heading text-3xl font-bold text-heading sm:text-4xl">Some situations need a real</span>
+                                    <span className="mt-1 block font-display text-4xl italic text-brand sm:text-5xl">review, not a list.</span>
+                                </h2>
+                                <p className="mt-6 mx-auto max-w-2xl text-base leading-relaxed text-[var(--prose)]">
+                                    Reach out for a free consultation and get advice based on your actual setup, priorities, and timeline.
+                                </p>
+                                <div className="mt-8">
+                                    <Link to="/contact">
+                                        <Button className="btn-premium-primary h-14 rounded-full px-8 text-sm font-heading font-semibold">
+                                            Ask About Your Situation
+                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
